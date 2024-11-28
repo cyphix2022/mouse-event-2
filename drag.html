@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Draggable Container</title>
+  <style>
+    .draggable {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 150px;
+      background-color: rgb(189, 33, 33);
+      border: 1px solid black;
+      border-radius: 4rem;
+      cursor: move;
+      display:flex;
+      align-items: center;
+      vertical-align: text-top;
+    }
+    .money-profile{
+      background-color: aquamarine;
+    }
+    .aspolo{
+      background-color:white;
+    }
+  </style>
+</head>
+<body>
+  <div id="container" class="draggable">
+    
+    <div class="aspolo">Advanced Web Systems and Technologies</div>
+  </div>
+  <script>
+    const container = document.getElementById('container');
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    container.addEventListener('mousedown', (event) => {
+      isDragging = true;
+      offsetX = event.clientX - container.offsetLeft;
+      offsetY = event.clientY - container.offsetTop;
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      if (isDragging) {
+        container.style.top = `${event.clientY - offsetY}px`;
+        container.style.left = `${event.clientX - offsetX}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  </script>
+</body>
+</html>
